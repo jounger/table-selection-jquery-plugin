@@ -37,7 +37,11 @@
 				if(settings.sort)
 					$row_nums = $row_nums.sort();
 				// call back function
-				callback.call(this, {rows: $row_nums});
+				if($.isFunction(callback)) {
+					callback.call(this, {rows: $row_nums});
+				} else {
+					console.log('Require callback function.');
+				}
 			});
         });
  	}
