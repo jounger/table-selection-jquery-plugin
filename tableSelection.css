@@ -1,0 +1,11 @@
+tr.selected {
+    background-color: #337ab7 !important;
+    color: #fff !important;
+}
+tr:hover {
+    background-color: #cbf5eb;
+    color: #2da79b;
+    transition: 0.3s;
+    cursor: pointer;
+    clip-path: polygon(0% 0%, 98% 0%, 100% 50%, 98% 100%, 0% 100%);
+}

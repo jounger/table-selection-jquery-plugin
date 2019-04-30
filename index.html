@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Pagination Plugin</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="tableSelection.css">
+<style type="text/css">
+    body {
+        text-align: center;
+    }
+    .container {
+        padding: 50px 0;
+    }
+    .demo {
+        width: 100%;
+    }
+    .demo > div {
+        width: fit-content;
+        margin: 50px auto;
+    }
+</style>
+</head>
+<body>
+
+<div class="be-wrapper">
+    <div class="container">
+        <h1>Table Selection Plugin</h1>
+        <p>Anything you need. It's here!</p>
+        <div class="demo">
+            <div id="page">
+                <table class="table" id="tableSelected">
+                    <thead>
+                        <tr>
+                        <th class="select-all">No.</th><th>Order Id</th><th>Tracking Code</th><th>Courier</th><th>Title</th><th>Customer</th><th>Days</th><th>Dest</th><th>Status</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1</td><td class="order-style">#awef2325fawef</td><td id="tr183543420vn">tr183543420vn</td><td class="vnpost">Vietnam Post</td><td>VN POST</td><td>Hai Nam</td><td>0</td><td>AUS</td><td><span class="status InTransit">InTransit</span></td></tr>
+                        <tr><td>2</td><td class="order-style">#f3fe6662</td><td id="786256988348">786256988348</td><td class="fedex">FedEx</td><td></td><td></td><td>0</td><td>BMU</td><td><span class="status Delivered">Delivered</span></td></tr>
+                        <tr><td>3</td><td class="order-style">#2365fawe15</td><td id="741164175">741164175</td><td class="tnt">TNT</td><td>Gi cung duoc</td><td>Five</td><td>0</td><td>CHE</td><td><span class="status InTransit">InTransit</span></td></tr>
+                        <tr><td>4</td><td class="order-style">#25awef2af</td><td id="2919181834">2919181834</td><td class="dhl">DHL Express</td><td></td><td>Hihi</td><td>0</td><td>ALA</td><td><span class="status Delivered">Delivered</span></td></tr>
+                        <tr><td>5</td><td class="order-style">#vidu87198</td><td id="331771020590">331771020590</td><td class="purolator">Purolator</td><td>Mot Hang khac Auto update</td><td>Ann</td><td>0</td><td>AUS</td><td><span class="status InTransit">InTransit</span></td></tr>
+                        <tr><td>6</td><td class="order-style">#vidu12345</td><td id="786315412629">786315412629</td><td class="fedex">FedEx</td><td>Vi du ve mot tracking auto update</td><td>An</td><td>0</td><td>USA</td><td><span class="status Delivered">Delivered</span></td></tr>
+                        <tr><td>7</td><td class="order-style">#12345</td><td id="12345">12345</td><td class="abc-express">ABC Express</td><td>Example Tracking</td><td>Alex</td><td>0</td><td>ARG</td><td><span class="status OutForDelivery">OutForDelivery</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <button onclick="showSelectedRow($rows);">Show Me</button>
+            <br/>
+            <label>Selected rows information will be displayed below.</label>
+            <ul id="info">
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="tableSelection.js"></script>
+
+<script type="text/javascript">
+    var $rows = [];
+    $(function() {
+    	console.log( "ready!" );
+        // start plugin
+        $('#tableSelected').TableSelection({
+                sort : false, // sort or not (true | false)
+                status : 'multiple', // single or multiple selection (default is 'single')
+            }, function(obj){ // callback function return selected rows array
+                $rows = obj.rows;
+        });
+
+    });
+
+    // Get HTML Object from row in array
+    function showSelectedRow(array){
+        $('#info').empty();
+        $.each(array, function(i, row){
+            $('#info').append('<li>' 
+                + $('#tableSelected').RowValue(row).find('td').eq(2).html() // HTML Object
+                + '</li>');
+        });
+    }
+</script>
+</body>
+
+</html>
